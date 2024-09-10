@@ -116,7 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockText: {fileID: 4973725598413436506}
   dayText: {fileID: 4973725598474703698}
-  timeSpeed: 0.5
+  timeSpeed: 0
+  smoothingPanel_Animator: {fileID: 0}
 --- !u!1 &4973725598084226810
 GameObject:
   m_ObjectHideFlags: 0
