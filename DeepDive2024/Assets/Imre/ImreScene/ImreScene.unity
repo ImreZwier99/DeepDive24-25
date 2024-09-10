@@ -375,7 +375,7 @@ MonoBehaviour:
   parentObject: {fileID: 216160463}
   counterText: {fileID: 1070218650}
   offsetHeight: 0.015
-  numberOfStacks: 14
+  numberOfStacks: 12
   textYOffset: 0.1
 --- !u!4 &216160465
 Transform:

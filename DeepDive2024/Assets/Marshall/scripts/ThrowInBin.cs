@@ -40,6 +40,11 @@ public class ThrowInBin : MonoBehaviour
                 lookingToBin = true;
                 print("looking at");
             }
+            else
+            {
+                print("looking away");
+                lookingToBin = false;
+            }
         }
         else
         {
