@@ -17,6 +17,9 @@ public class CameraLook : MonoBehaviour
     [Header("Raycast Variables")]
     [SerializeField] private float rayDistance = 10f; // Max ray distance
     [SerializeField] private LayerMask interactableLayerMask; // Add layer mask to limit raycast to specific layers if needed
+    [SerializeField] private PaperStack paperStack; // Reference to the PaperStack script
+
+    private bool isLookingAtInteractable = false; // Track if the raycast is currently hitting an interactable object
 
     private void Start()
     {
@@ -27,7 +30,8 @@ public class CameraLook : MonoBehaviour
     void Update()
     {
         HandleMouseLook();
-        SendRaycast();
+        CheckRaycast();
+        HandleInput();
     }
 
     private void HandleMouseLook()
@@ -48,7 +52,7 @@ public class CameraLook : MonoBehaviour
             Quaternion.Euler(-rotationX, 0, 0), camAcc * Time.deltaTime);
     }
 
-    private void SendRaycast()
+    private void CheckRaycast()
     {
         // Raycast from the center of the screen
         Ray ray = new Ray(_camera.position, _camera.forward);
@@ -59,7 +63,32 @@ public class CameraLook : MonoBehaviour
             // Check if the hit object has the tag "interactable"
             if (hit.collider.CompareTag("interactable"))
             {
+                isLookingAtInteractable = true;
                 Debug.Log("Hit interactable object: " + hit.collider.gameObject.name);
+            }
+            else
+            {
+                isLookingAtInteractable = false;
+            }
+        }
+        else
+        {
+            isLookingAtInteractable = false;
+        }
+    }
+
+    private void HandleInput()
+    {
+        // Check for left mouse button press
+        if (Input.GetMouseButtonDown(0)) // 0 is the left mouse button
+        {
+            if (isLookingAtInteractable)
+            {
+                // Decrease the counter in the PaperStack component
+                if (paperStack != null)
+                {
+                    paperStack.DecreaseCounter();
+                }
             }
         }
     }
