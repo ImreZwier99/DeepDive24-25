@@ -12,6 +12,7 @@ TagManager:
   - button f1
   - button f6
   - interactable
+  - Bin
   layers:
   - Default
   - TransparentFX
