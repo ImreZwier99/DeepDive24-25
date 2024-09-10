@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DigitalClock : MonoBehaviour
 {
-    public TextMeshProUGUI clockText;  // De klokweergave
-    public TextMeshProUGUI dayText;    // De dagweergave
+    public TextMeshProUGUI clockText;    // De klokweergave
+    public TextMeshProUGUI dayText;      // De dagweergave
+    public TextMeshProUGUI dateText;     // De datumweergave
 
     private TimeSpan startTime = new TimeSpan(8, 57, 0);   // Starttijd om 08:57
     private TimeSpan endTime = new TimeSpan(17, 0, 0);     // Eindtijd om 17:00
@@ -16,6 +17,7 @@ public class DigitalClock : MonoBehaviour
     public Animator smoothingPanel_Animator;               // Animator component
 
     private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+    private DateTime startDate = new DateTime(2024, 2, 10); // Stel een startdatum in
     private bool clockStopped = false;                     // Houdt bij of de klok is gestopt
 
     void Start()
@@ -24,6 +26,7 @@ public class DigitalClock : MonoBehaviour
         currentTime = startTime;
         dayText.text = days[dayIndex];
         UpdateClock();
+        UpdateDate(); // Initieel de datum bijwerken
     }
 
     void Update()
@@ -74,6 +77,15 @@ public class DigitalClock : MonoBehaviour
         clockText.text = currentTime.ToString(@"hh\:mm");
     }
 
+    void UpdateDate()
+    {
+        // Bereken de datum op basis van de dagindex
+        DateTime currentDate = startDate.AddDays(dayIndex);
+        // Format de datum als "MM/dd/yyyy" in cijfers
+        string formattedDate = currentDate.ToString("dd/MM/yyyy");
+        dateText.text = formattedDate;
+    }
+
     void ResetTimeAndAdvanceDay()
     {
         currentTime = startTime;
@@ -86,6 +98,7 @@ public class DigitalClock : MonoBehaviour
 
         dayText.text = days[dayIndex];
         UpdateClock();
+        UpdateDate(); // Werk de datum bij na het aanpassen van de dag
         clockStopped = false; // Klok opnieuw starten voor de volgende cyclus
     }
 }
