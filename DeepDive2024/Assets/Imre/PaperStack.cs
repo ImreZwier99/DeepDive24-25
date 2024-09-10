@@ -17,7 +17,7 @@ public class PaperStack : MonoBehaviour
     private List<GameObject> stackedPrefabs = new List<GameObject>(); // List to keep track of stacked prefabs
     private List<int> triggerValues; // List of dynamic trigger values
 
-    public int counter; // The counter that counts down
+    private int counter; // The counter that counts down
 
     void Start()
     {
@@ -47,18 +47,11 @@ public class PaperStack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Decrease the counter when pressing a key (for testing purposes)
-        if (Input.GetKeyDown(KeyCode.Space)) // Press Space to simulate decreasing the counter
-        {
-            DecreaseCounter();
-        }
-
         // Update the position of the counter text above the stack
         UpdateCounterTextPosition();
     }
 
-    // This function decreases the counter and checks if it should remove a stack
-    void DecreaseCounter()
+    public void DecreaseCounter()
     {
         // Decrease the counter by 1
         counter--;
