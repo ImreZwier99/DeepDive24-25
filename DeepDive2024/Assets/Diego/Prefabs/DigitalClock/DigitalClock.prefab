@@ -252,7 +252,7 @@ MonoBehaviour:
   clockText: {fileID: 4973725598413436506}
   dayText: {fileID: 4973725598474703698}
   dateText: {fileID: 527887565}
-  timeSpeed: 0
+  timeSpeed: 0.5
   smoothingPanel_Animator: {fileID: 0}
 --- !u!1 &4973725598084226810
 GameObject:
