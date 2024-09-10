@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 919605dbe37f25f46b53f870dae6cb11
-  m_OcclusionCullingData: {fileID: 36300000, guid: 2796c0d3005c259459466faef4221ab4,
+  m_OcclusionCullingData: {fileID: 36300000, guid: d574f6a33dd9717499cb1cff6a793d8d,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -375,7 +375,7 @@ MonoBehaviour:
   parentObject: {fileID: 216160463}
   counterText: {fileID: 1070218650}
   offsetHeight: 0.015
-  numberOfStacks: 12
+  numberOfStacks: 54
   textYOffset: 0.1
 --- !u!4 &216160465
 Transform:
@@ -646,6 +646,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575711712}
   m_CullTransparentMesh: 1
+--- !u!1001 &832346598
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 86.865
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.499994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 58.587
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796882997707125761, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011537738893374712, guid: 5597b542deb68fd4e8a628f09d9e4957,
+        type: 3}
+      propertyPath: m_Name
+      value: node_id74
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5597b542deb68fd4e8a628f09d9e4957, type: 3}
 --- !u!1 &988193000
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +980,7 @@ GameObject:
   - component: {fileID: 1464038675}
   - component: {fileID: 1464038679}
   - component: {fileID: 1464038680}
+  - component: {fileID: 1464038681}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1040,6 +1110,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   paperStack: {fileID: 216160464}
+--- !u!114 &1464038681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464038674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f64721f32fd865408744dec72151a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1464038677}
+  rayDistance: 10
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  Papierpropje: {fileID: 1284526444773938758, guid: 3ad6748903f9c3c449d5aa62cf289801,
+    type: 3}
+  propThrow: {fileID: 1464038674}
+  lookingToBin: 0
 --- !u!1 &1791339628
 GameObject:
   m_ObjectHideFlags: 0
