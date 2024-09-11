@@ -19,6 +19,12 @@ public class PapierPropje : MonoBehaviour
             cam = Camera.main;
         }
 
+        GameObject boss = GameObject.FindWithTag("Boss");
+        if (boss != null)
+        {
+            boss_Animator = boss.GetComponent<Animator>();
+        }
+
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Vector3 direction = ray.direction;
 
