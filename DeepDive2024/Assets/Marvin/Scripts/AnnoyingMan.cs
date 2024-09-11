@@ -19,7 +19,7 @@ public class AnnoyingMan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DigitalClock.dayIndex >= 2 && !isActive) AnnoyingManActive();
+        if (DigitalClock.dayIndex >= 1 && !isActive) AnnoyingManActive();
     }
 
     void AnnoyingManActive()

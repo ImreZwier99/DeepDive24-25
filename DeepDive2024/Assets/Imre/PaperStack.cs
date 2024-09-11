@@ -10,7 +10,7 @@ public class PaperStack : MonoBehaviour
     public GameObject parentObject; // Reference to the empty GameObject (parent)
     public TextMeshProUGUI counterText; // Reference to the TextMeshProUGUI element for displaying the counter
     public float offsetHeight = 1.0f; // Height offset for each stacked prefab
-    public int numberOfStacks = 4; // Number of prefabs to stack initially, set in the editor
+    public static int numberOfStacks = 4; // Number of prefabs to stack initially, set in the editor
     public float textYOffset = 2.0f; // Offset to position the text above the stack
 
     private int startingCounter; // The dynamic starting value of the counter
