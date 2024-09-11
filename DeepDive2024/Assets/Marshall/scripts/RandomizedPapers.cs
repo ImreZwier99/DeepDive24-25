@@ -12,7 +12,7 @@ public class RandomizedPapers : MonoBehaviour
     public static string datum;
 
     public static int toegankelijkheid;
-    public int ondertekend;
+    public static int ondertekend;
 
     public static bool handTekening = false;
     public static bool privé = false;
@@ -92,6 +92,24 @@ public class RandomizedPapers : MonoBehaviour
             priveText.text = "Openbaar";
         }
 
+        if (toegankelijkheid <= 1)
+        {
+            privé = false;
+        }
+        else
+        {
+            privé = true;
+        }
+
+        if (ondertekend <= 1)
+        {
+            handTekening = false;
+        }
+        else
+        {
+            handTekening = true;
+        }
+
         if (handTekening)
         {
             handtekeningImage.SetActive(true);
@@ -118,10 +136,11 @@ public class RandomizedPapers : MonoBehaviour
     {
         // Call this method every time an item is spawned to reset and trigger the randomization and UI update
         RandomizeName();
+        Randomizer();
         isSpawned = false;  // Force the script to recheck for UI components and update them
     }
 
-    void Randomizer()
+    public static void Randomizer()
     {
         var rnd = new System.Random();
 
