@@ -20,10 +20,6 @@ public class ThrowPropje : MonoBehaviour
 
         // Find the CameraLook script
         cameraLook = FindObjectOfType<CameraLook>();
-        if (cameraLook == null)
-        {
-            Debug.LogError("CameraLook script not found in the scene.");
-        }
     }
 
     void Update()
