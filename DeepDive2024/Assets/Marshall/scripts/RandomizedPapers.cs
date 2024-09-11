@@ -28,13 +28,11 @@ public class RandomizedPapers : MonoBehaviour
 
     void Start()
     {
-        // Randomize name on start
         RandomizeName();
     }
 
     void Update()
     {
-        // Continuously check for new spawns (can also be triggered by an event or method)
         if (!isSpawned)
         {
             StartCoroutine(WaitForSpawnedItem());
@@ -51,36 +49,31 @@ public class RandomizedPapers : MonoBehaviour
 
     IEnumerator WaitForSpawnedItem()
     {
-        isSpawned = true;  // Temporarily mark as spawned until we reset it later
+        isSpawned = true;
 
-        // Continuously check until all necessary components are found
         bool foundAllComponents = false;
 
         while (!foundAllComponents)
         {
-            // Find UI components dynamically
             naamText = GameObject.FindGameObjectWithTag("naamtext")?.GetComponent<TextMeshProUGUI>();
             priveText = GameObject.FindGameObjectWithTag("toegankelijkheidstest")?.GetComponent<TextMeshProUGUI>();
             datumText = GameObject.FindGameObjectWithTag("datumText")?.GetComponent<TextMeshProUGUI>();
             handtekeningImage = GameObject.FindGameObjectWithTag("HandtekeningText");
 
-            // Check if all components have been found
             if (naamText != null && priveText != null && datumText != null && handtekeningImage != null)
             {
                 foundAllComponents = true;
-                UpdateUI();  // Update UI after components have been found
+                UpdateUI();
             }
 
-            yield return null;  // Wait for next frame before rechecking
+            yield return null;
         }
 
-        // Reset after UI is updated, so that it can detect new spawns in the next frame
-        isSpawned = false;  // Allow re-triggering when a new spawn occurs
+        isSpawned = false;
     }
 
     void UpdateUI()
     {
-        // Update the UI text and visibility
         naamText.text = fullName;
 
         if (privé)
@@ -119,7 +112,6 @@ public class RandomizedPapers : MonoBehaviour
             handtekeningImage.SetActive(false);
         }
 
-        // Check if the document is "belangrijk"
         if (fullName == "Thomas Mulder" && handTekening && geldigeDatum)
         {
             belangrijk = true;
@@ -128,23 +120,19 @@ public class RandomizedPapers : MonoBehaviour
         {
             belangrijk = false;
         }
-
-        // Optionally trigger any post-UI update logic here (like spawning new papers).
     }
 
     public static void OnNewSpawn()
     {
-        // Call this method every time an item is spawned to reset and trigger the randomization and UI update
         RandomizeName();
         Randomizer();
-        isSpawned = false;  // Force the script to recheck for UI components and update them
+        isSpawned = false;
     }
 
     public static void Randomizer()
     {
         var rnd = new System.Random();
 
-        // Randomize toegankelijkheid and ondertekend status
         toegankelijkheid = rnd.Next(0, 3);
         ondertekend = rnd.Next(0, 3);
     }
