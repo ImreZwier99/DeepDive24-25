@@ -83,7 +83,7 @@ public class PaperStack : MonoBehaviour
         Vector3 newPosition = new Vector3(transform.position.x, transform.position.y + offsetHeight * index, transform.position.z);
 
         // Set the rotation to 90 degrees along the X-axis
-        Quaternion rotation = Quaternion.Euler(90, 0, 0);
+        Quaternion rotation = Quaternion.Euler(90, 90, 0);
 
         // Instantiate a new copy of the prefab at the new position, with the desired rotation, as a child of the parentObject
         GameObject newStack = Instantiate(prefabToCopy, newPosition, rotation, parentObject.transform);
