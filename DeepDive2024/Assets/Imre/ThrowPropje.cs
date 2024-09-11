@@ -44,7 +44,7 @@ public class ThrowPropje : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, rayDistance, interactableLayerMask))
         {
-            if (hit.collider.CompareTag("Bin"))
+            if (hit.collider.CompareTag("Bin") || hit.collider.CompareTag("Boss"))
             {
                 lookingToBin = true;
             }

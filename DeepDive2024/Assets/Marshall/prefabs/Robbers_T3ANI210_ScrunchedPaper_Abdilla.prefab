@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1284526444773938756}
-  force: 5
+  force: 10
   cam: {fileID: 0}
   destroyTimer: 2
-  timerRunning: 1
+  boss_Animator: {fileID: 0}
 --- !u!54 &1284526444773938756
 Rigidbody:
   m_ObjectHideFlags: 0

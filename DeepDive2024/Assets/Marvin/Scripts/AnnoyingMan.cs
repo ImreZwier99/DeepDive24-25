@@ -6,7 +6,7 @@ using UnityEngine;
 public class AnnoyingMan : MonoBehaviour
 {
     public Transform character;
-    private float range, timer;
+    [SerializeField] private float range, timer;
     public Animator boss_Animator;
     public static bool isActive = false;
     // Start is called before the first frame update
