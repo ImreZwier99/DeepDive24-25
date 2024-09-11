@@ -13,7 +13,8 @@ TagManager:
   - button f6
   - interactable
   - Bin
-  - Boss
+  - PaperStack
+  - Plant
   layers:
   - Default
   - TransparentFX
