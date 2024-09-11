@@ -8,6 +8,7 @@ public class PapierPropje : MonoBehaviour
     public float force = 10f;
     public Camera cam;
     public float destroyTimer = 2f;
+    public Animator boss_Animator;
 
     void Start()
     {
@@ -16,6 +17,12 @@ public class PapierPropje : MonoBehaviour
         if (cam == null)
         {
             cam = Camera.main;
+        }
+
+        GameObject boss = GameObject.FindWithTag("Boss");
+        if (boss != null)
+        {
+            boss_Animator = boss.GetComponent<Animator>();
         }
 
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -31,6 +38,14 @@ public class PapierPropje : MonoBehaviour
         if (destroyTimer <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Boss"))
+        {
+            boss_Animator.SetBool("BossMovement", false);
         }
     }
 }

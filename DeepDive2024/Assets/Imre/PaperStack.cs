@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Import TextMeshPro namespace
+using TMPro; // Import TextMeshPro namespace for UI
 
 public class PaperStack : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class PaperStack : MonoBehaviour
     private List<GameObject> stackedPrefabs = new List<GameObject>(); // List to keep track of stacked prefabs
     private List<int> triggerValues; // List of dynamic trigger values
 
-    private int counter; // The counter that counts down
+    public int counter; // The counter that counts down
 
     void Start()
     {
@@ -51,6 +51,7 @@ public class PaperStack : MonoBehaviour
         UpdateCounterTextPosition();
     }
 
+    // This function decreases the counter and checks if it should remove a stack
     public void DecreaseCounter()
     {
         // Decrease the counter by 1
@@ -110,16 +111,17 @@ public class PaperStack : MonoBehaviour
     // Method to update the counter text
     void UpdateCounterText()
     {
-        // If counter reaches zero, disable the text element
-        if (counter == 0)
+        if (counterText != null)
         {
-            counterText.gameObject.SetActive(false); // Hide the counter when it reaches zero
-        }
-        else
-        {
-            // Ensure the counter text is active and update the text
-            counterText.gameObject.SetActive(true);
             counterText.text = counter.ToString();
+            if (counter <= 0)
+            {
+                counterText.gameObject.SetActive(false); // Hide text when counter reaches 0
+            }
+            else
+            {
+                counterText.gameObject.SetActive(true); // Show text if counter is above 0
+            }
         }
     }
 
