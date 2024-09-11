@@ -12,8 +12,8 @@ public class DigitalClock : MonoBehaviour
     private TimeSpan endTime = new TimeSpan(17, 0, 0);     // Eindtijd om 17:00
     private TimeSpan currentTime;                          // Huidige in-game tijd
     public float timeSpeed = 2.0f;                         // 1 minuut in-game duurt 2 seconden in real life
-    private float timeCounter = 0f;                        // Timer om de tijd te tracken
-    private int dayIndex = 0;                              // Start op maandag (index voor de dagen)
+    public static float timeCounter = 0f;                        // Timer om de tijd te tracken
+    public static int dayIndex = 0;                              // Start op maandag (index voor de dagen)
     public Animator smoothingPanel_Animator;               // Animator component
 
     private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
@@ -23,6 +23,7 @@ public class DigitalClock : MonoBehaviour
     void Start()
     {
         // Stel de initiële tijd en dag in
+        dayIndex = 2;
         currentTime = startTime;
         dayText.text = days[dayIndex];
         UpdateClock();
@@ -67,9 +68,6 @@ public class DigitalClock : MonoBehaviour
         // Zet de animatiebool in de animator aan
         smoothingPanel_Animator.SetBool("Smoothing", true);
         clockStopped = true; // Stop de klok
-
-        // Debug boodschap om te bevestigen dat de animatie start
-        Debug.Log("StartAnimation: Setting Smoothing to true");
     }
 
     void UpdateClock()
@@ -90,6 +88,7 @@ public class DigitalClock : MonoBehaviour
     {
         currentTime = startTime;
         dayIndex++;
+        AnnoyingMan.isActive = false;
 
         if (dayIndex >= days.Length)
         {
