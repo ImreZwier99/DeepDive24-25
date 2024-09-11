@@ -8,6 +8,7 @@ public class PapierPropje : MonoBehaviour
     public float force = 10f;
     public Camera cam;
     public float destroyTimer = 2f;
+    public Animator boss_Animator;
 
     void Start()
     {
@@ -31,6 +32,14 @@ public class PapierPropje : MonoBehaviour
         if (destroyTimer <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Boss"))
+        {
+            boss_Animator.SetBool("BossMovement", false);
         }
     }
 }

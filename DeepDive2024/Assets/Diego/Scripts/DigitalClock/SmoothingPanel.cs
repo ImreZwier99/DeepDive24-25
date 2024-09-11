@@ -11,8 +11,5 @@ public class SmoothingPanel : MonoBehaviour
     {
         // Update de statische bool met de waarde van de public bool smooth
         smoothing = smooth;
-
-        // Debugging om te controleren of smoothing wordt bijgewerkt
-        Debug.Log("SmoothingPanel: Smoothing set to " + smoothing);
     }
 }
