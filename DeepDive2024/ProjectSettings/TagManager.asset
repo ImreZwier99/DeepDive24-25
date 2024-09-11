@@ -15,6 +15,12 @@ TagManager:
   - Bin
   - PaperStack
   - Plant
+  - Boss
+  - datumText
+  - HandtekeningText
+  - toegankelijkheidstest
+  - naamtext
+  - Papier
   layers:
   - Default
   - TransparentFX
