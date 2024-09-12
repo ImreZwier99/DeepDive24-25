@@ -3514,7 +3514,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937731575}
   m_LocalRotation: {x: 0.437426, y: -0.437426, z: -0.5555705, w: 0.5555705}
-  m_LocalPosition: {x: 86.423, y: 10.3858, z: 58.559}
+  m_LocalPosition: {x: 86.269, y: 10.3858, z: 58.559}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3874,7 +3874,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052253039}
   m_LocalRotation: {x: 0.50579375, y: -0.50579375, z: -0.4941384, w: 0.4941384}
-  m_LocalPosition: {x: 86.657, y: 10.3858, z: 58.547}
+  m_LocalPosition: {x: 86.503, y: 10.3858, z: 58.547}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3988,7 +3988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147935849938}
   m_LocalRotation: {x: 0.5376882, y: -0.5376882, z: -0.45922914, w: 0.45922914}
-  m_LocalPosition: {x: 86.167, y: 10.3858, z: 58.542}
+  m_LocalPosition: {x: 86.013, y: 10.3858, z: 58.542}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4206,6 +4206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 1
+  detailPanel: {fileID: 0}
+  smoothingPanel_Animator: {fileID: 0}
+  timer_Text: {fileID: 0}
 --- !u!1 &2185316877512269060
 GameObject:
   m_ObjectHideFlags: 0
