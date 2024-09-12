@@ -46,6 +46,7 @@ public class PapierPropje : MonoBehaviour
         if(collision.collider.CompareTag("Boss"))
         {
             boss_Animator.SetBool("BossMovement", false);
+            WateringSystem.fired = true;
         }
     }
 }

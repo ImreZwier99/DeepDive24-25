@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 public class SmoothingPanel : MonoBehaviour
 {
     public bool smooth;
-    public static bool smoothing, completedDay = true;
-    private bool isActive = false;
+    public static bool smoothing, completedDay = true, isActive = false;
 
     public GameObject detailPanel, completedDayText, failedDayButtons;
     private float panelTimer = 15;
@@ -34,8 +33,9 @@ public class SmoothingPanel : MonoBehaviour
 
     private void EarlyCompleted()
 	{
-        if(PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper) completedDay = true;
-	}
+        if(PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper && !WateringSystem.fired) completedDay = true;
+        else if(WateringSystem.fired) completedDay = false;
+    }
 
     public void DetailPanelActivation()
 	{

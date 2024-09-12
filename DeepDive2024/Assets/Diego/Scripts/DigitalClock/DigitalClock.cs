@@ -53,7 +53,7 @@ public class DigitalClock : MonoBehaviour
             currentTime = currentTime.Add(new TimeSpan(0, 1, 0));
             timeCounter = 0f;
 
-            if (currentTime >= endTime || PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper)
+            if (currentTime >= endTime || PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper || WateringSystem.fired)
             {
                 // Stop de klok en start de animatie
                 StartAnimation();

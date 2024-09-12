@@ -15,8 +15,12 @@ public class WateringSystem : MonoBehaviour
     private const float maxWateringTime = 60f;
     private const float minWateringThreshold = 10f;
 
+    public static bool fired = false;
+
     private void Start()
     {
+        fired = false;
+
         ResetWateringTimer(1);
         ResetWateringTimer(2);
 
@@ -35,11 +39,7 @@ public class WateringSystem : MonoBehaviour
         CheckRaycast();
         if (AnnoyingMan.isActive == true)
         {
-            if(waterTimer1 <= 0 || waterTimer2 <= 0)
-            {
-                Debug.Log("you dead");
-            }
-            
+            if(waterTimer1 <= 0 || waterTimer2 <= 0) fired = true;
         }
     }
 

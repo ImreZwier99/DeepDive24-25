@@ -40,7 +40,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !WateringSystem.fired)
         {
             if (heldPaper == null && canGrab && paperStack != null && PaperStack.counter > 0)
             {
