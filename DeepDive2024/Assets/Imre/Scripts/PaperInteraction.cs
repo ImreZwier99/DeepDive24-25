@@ -20,7 +20,7 @@ public class PaperInteraction : MonoBehaviour
     private PaperStack paperStack;
     private bool canGrab = false;
     private bool canInteractWithBinder = false;
-    private int fout = 2;
+    private int fout = 0;
     public static bool isHoldingPaper = false;
     private void Start()
     {
@@ -38,6 +38,7 @@ public class PaperInteraction : MonoBehaviour
         if (fout > 2)
         {
             //zet hier wat dan moet gebeuren.
+            WateringSystem.fired = true;
             print("je hebt te veel fouten gemaakt.");
         }
     }
@@ -69,7 +70,7 @@ public class PaperInteraction : MonoBehaviour
             if (canInteractWithBinder = hit.collider.CompareTag("Binder") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.departementaalOnversleuteld)
             {
                 Destroy(heldPaper);
-                fout--;
+                fout++;
                 print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder")&& Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.departementaalOnversleuteld)
@@ -81,7 +82,7 @@ public class PaperInteraction : MonoBehaviour
             if (canInteractWithBinder = hit.collider.CompareTag("Binder2") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.departementaalVersleuteld)
             {
                 Destroy(heldPaper);
-                fout--;
+                fout++;
                 print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder2") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.departementaalVersleuteld)
@@ -93,7 +94,7 @@ public class PaperInteraction : MonoBehaviour
             if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.openbaar)
             {
                 Destroy(heldPaper);
-                fout--;
+                fout++;
                 print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.openbaar)
@@ -105,7 +106,7 @@ public class PaperInteraction : MonoBehaviour
             if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.vertrouwelijk)
             {
                 Destroy(heldPaper);
-                fout--;
+                fout++;
                 print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.vertrouwelijk)
@@ -117,7 +118,7 @@ public class PaperInteraction : MonoBehaviour
             if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.intern)
             {
                 Destroy(heldPaper);
-                fout--;
+                fout++;
                 print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.intern)
@@ -135,7 +136,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void GrabPaper()
     {
-        paperSFX.Play();
+        //paperSFX.Play();
         RandomizedPapers.OnNewSpawn();
         if (paperPrefab == null) return;
 
