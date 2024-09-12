@@ -3,34 +3,48 @@ using UnityEngine.UI;
 
 public class WateringSystem : MonoBehaviour
 {
-    [SerializeField] private Slider wateringSlider;
-    private bool canWaterPlant = false;
-    public float waterTimer;
-    private const float minWateringTime = 45f;
+    [SerializeField] private Slider wateringSlider1; 
+    [SerializeField] private Slider wateringSlider2; 
+    private bool canWaterPlant1 = false;
+    private bool canWaterPlant2 = false;
+
+    public float waterTimer1;
+    public float waterTimer2;
+
+    private const float minWateringTime = 30f;
     private const float maxWateringTime = 60f;
     private const float minWateringThreshold = 10f;
 
     private void Start()
     {
-        ResetWateringTimer();
-        if (wateringSlider != null)
-        {
-            wateringSlider.gameObject.SetActive(false);
-        }
+        ResetWateringTimer(1);
+        ResetWateringTimer(2);
+
+        if (wateringSlider1 != null)
+            wateringSlider1.gameObject.SetActive(false);
+
+        if (wateringSlider2 != null)
+            wateringSlider2.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        UpdateWateringTimer();
+        UpdateWateringTimer(1);
+        UpdateWateringTimer(2);
         HandleInput();
         CheckRaycast();
     }
 
     private void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0) && canWaterPlant && waterTimer <= minWateringThreshold)
+        if (Input.GetMouseButtonDown(0) && canWaterPlant1 && waterTimer1 <= minWateringThreshold)
         {
-            WaterPlant();
+            WaterPlant(1);
+        }
+
+        if (Input.GetMouseButtonDown(0) && canWaterPlant2 && waterTimer2 <= minWateringThreshold)
+        {
+            WaterPlant(2);
         }
     }
 
@@ -41,42 +55,77 @@ public class WateringSystem : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10f))
         {
-            canWaterPlant = hit.collider.CompareTag("Plant");
+            canWaterPlant1 = hit.collider.CompareTag("Plant1");
+
+            canWaterPlant2 = hit.collider.CompareTag("Plant2");
         }
         else
         {
-            canWaterPlant = false;
+            canWaterPlant1 = false;
+            canWaterPlant2 = false;
         }
     }
 
-    private void UpdateWateringTimer()
+    private void UpdateWateringTimer(int plantNumber)
     {
-        if (waterTimer > 0)
+        if (plantNumber == 1 && waterTimer1 > 0)
         {
-            waterTimer -= Time.deltaTime;
+            waterTimer1 -= Time.deltaTime;
 
-            if (waterTimer <= minWateringThreshold)
+            if (waterTimer1 <= minWateringThreshold)
             {
-                wateringSlider.gameObject.SetActive(true);
-                wateringSlider.maxValue = minWateringThreshold;
-                wateringSlider.value = waterTimer;
+                wateringSlider1.gameObject.SetActive(true);
+                wateringSlider1.maxValue = minWateringThreshold;
+                wateringSlider1.value = waterTimer1;
             }
             else
             {
-                wateringSlider.gameObject.SetActive(false);
+                wateringSlider1.gameObject.SetActive(false);
+            }
+        }
+
+        if (plantNumber == 2 && waterTimer2 > 0)
+        {
+            waterTimer2 -= Time.deltaTime;
+
+            if (waterTimer2 <= minWateringThreshold)
+            {
+                wateringSlider2.gameObject.SetActive(true);
+                wateringSlider2.maxValue = minWateringThreshold;
+                wateringSlider2.value = waterTimer2;
+            }
+            else
+            {
+                wateringSlider2.gameObject.SetActive(false);
             }
         }
     }
 
-    private void WaterPlant()
+    private void WaterPlant(int plantNumber)
     {
-        ResetWateringTimer();
-        Debug.Log("Plant has been watered. Timer reset.");
+        if (plantNumber == 1)
+        {
+            ResetWateringTimer(1);
+        }
+
+        if (plantNumber == 2)
+        {
+            ResetWateringTimer(2);
+        }
     }
 
-    private void ResetWateringTimer()
+    private void ResetWateringTimer(int plantNumber)
     {
-        waterTimer = Random.Range(minWateringTime, maxWateringTime);
-        wateringSlider.gameObject.SetActive(false);
+        if (plantNumber == 1)
+        {
+            waterTimer1 = Random.Range(minWateringTime, maxWateringTime);
+            wateringSlider1.gameObject.SetActive(false);
+        }
+
+        if (plantNumber == 2)
+        {
+            waterTimer2 = Random.Range(minWateringTime, maxWateringTime);
+            wateringSlider2.gameObject.SetActive(false);
+        }
     }
 }

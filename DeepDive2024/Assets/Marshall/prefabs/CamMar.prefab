@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5034529045728610491}
   - component: {fileID: 5034529045728610492}
   - component: {fileID: 5034529045728610488}
-  - component: {fileID: 4375044330714792963}
   - component: {fileID: 5034529045728610487}
+  - component: {fileID: 263825413}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -120,27 +120,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &4375044330714792963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5034529045728610493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f64721f32fd865408744dec72151a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 5034529045728610490}
-  rayDistance: 10
-  interactableLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  Papierpropje: {fileID: 1284526444773938758, guid: 3ad6748903f9c3c449d5aa62cf289801,
-    type: 3}
-  propThrow: {fileID: 5034529046793814597}
-  lookingToBin: 0
 --- !u!114 &5034529045728610487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +142,35 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  paperStack: {fileID: 0}
+  paperPrefab: {fileID: 0}
+  paperDistance: 0
+  paperRotationX: 0
+  paperXOffset: 0
+  paperYoffset: 0
+  wateringSlider: {fileID: 0}
+  waterTimer: 0
+  heldPaper: {fileID: 0}
+--- !u!114 &263825413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034529045728610493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c6284536f461b4f87e7879a481a65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 5034529045728610490}
+  rayDistance: 10
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  Papierpropje: {fileID: 1284526444773938758, guid: 3ad6748903f9c3c449d5aa62cf289801,
+    type: 3}
+  propThrow: {fileID: 5034529045728610493}
+  lookingToBin: 0
 --- !u!1 &5034529046793814597
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,10 +249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: 
+  datum: 
   toegankelijkheid: 0
   ondertekend: 0
   handTekening: 0
   "priv\xE9": 0
+  geldigeDatum: 1
   belangrijk: 0
   naamText: {fileID: 0}
   priveText: {fileID: 0}
