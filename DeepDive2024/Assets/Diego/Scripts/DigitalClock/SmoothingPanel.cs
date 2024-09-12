@@ -6,17 +6,22 @@ using TMPro;
 public class SmoothingPanel : MonoBehaviour
 {
     public bool smooth;
-    public static bool smoothing;
+    public static bool smoothing, completedDay = true;
     private bool isActive = false;
 
-    public GameObject detailPanel;
+    public GameObject detailPanel, completedDayText, failedDayButtons;
     private float panelTimer = 15;
     public Animator smoothingPanel_Animator;
-    public TextMeshProUGUI timer_Text;
+    public TextMeshProUGUI timer_Text, headText;
 
-    void Update()
+	private void Start()
+	{
+        completedDay = true;
+	}
+
+	void Update()
     {
-		if (isActive)
+		if (isActive && completedDay && DigitalClock.dayIndex != 4)
 		{
             DetailPanelBehaviour();
             timer_Text.text = Mathf.Round(panelTimer).ToString() + " | Enter";
@@ -24,8 +29,34 @@ public class SmoothingPanel : MonoBehaviour
         smoothing = smooth;
     }
 
-    public void DetailPanelAvtivation()
+    public void DetailPanelActivation()
 	{
+		if (completedDay && DigitalClock.dayIndex != 4)
+		{
+            completedDayText.SetActive(true);
+            failedDayButtons.SetActive(false);
+            headText.text = "Day completed";
+            headText.color = Color.green;
+		}
+        else if(completedDay && DigitalClock.dayIndex == 4)
+		{
+            completedDayText.SetActive(false);
+            failedDayButtons.SetActive(true);
+            headText.text = "Week completed";
+            headText.color = Color.green;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (!completedDay)
+		{
+            completedDayText.SetActive(false);
+            failedDayButtons.SetActive(true);
+            headText.text = "Day failed";
+            headText.color= Color.red;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+		}
+
         detailPanel.SetActive(true);
         isActive = true;
     }

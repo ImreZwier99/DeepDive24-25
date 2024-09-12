@@ -23,7 +23,7 @@ public class DigitalClock : MonoBehaviour
     void Start()
     {
         // Stel de initiële tijd en dag in
-        dayIndex = 2;
+        dayIndex = 0;
         currentTime = startTime;
         dayText.text = days[dayIndex];
         UpdateClock();
@@ -89,11 +89,6 @@ public class DigitalClock : MonoBehaviour
         currentTime = startTime;
         dayIndex++;
         AnnoyingMan.isActive = false;
-
-        if (dayIndex >= days.Length)
-        {
-            dayIndex = 0;
-        }
 
         dayText.text = days[dayIndex];
         UpdateClock();
