@@ -42,8 +42,8 @@ public class CartSFXSystem : MonoBehaviour
 
     public void PaperBehaviour()
     {
+        PaperStack.counter += 10;
         paperSFX.Play();
-        PaperStack.numberOfStacks += 2;
     }
 
     public void AnimReset()
