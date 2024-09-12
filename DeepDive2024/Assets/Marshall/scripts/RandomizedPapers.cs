@@ -49,7 +49,7 @@ public class RandomizedPapers : MonoBehaviour
         string lastName = achternamen[random.Next(0, achternamen.Length)];
         fullName = firstName + " " + lastName;
 
-        string dag = dagen[random.Next(0,dagen.Length).ToString()];
+        string dag = dagen[random.Next(0,dagen.Length)].ToString();
     }
 
     IEnumerator WaitForSpawnedItem()
