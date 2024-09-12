@@ -12,6 +12,7 @@ public class PaperInteraction : MonoBehaviour
     [SerializeField] private float paperXOffset;
     [SerializeField] private float paperYoffset;
 
+    public AudioSource paperSFX;
     public GameObject heldPaper;
     private PaperStack paperStack;
     private bool canGrab = false;
@@ -128,6 +129,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void GrabPaper()
     {
+        paperSFX.Play();
         RandomizedPapers.OnNewSpawn();
         if (paperPrefab == null) return;
 
