@@ -55,7 +55,8 @@ public class PaperInteraction : MonoBehaviour
             canInteractWithBinder = hit.collider.CompareTag("Binder") ||
                                     hit.collider.CompareTag("Binder2") ||
                                     hit.collider.CompareTag("Binder3") ||
-                                    hit.collider.CompareTag("Binder4");
+                                    hit.collider.CompareTag("Binder4") ||
+                                    hit.collider.CompareTag("Binder5");
         }
         else
         {

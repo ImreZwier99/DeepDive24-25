@@ -136,8 +136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 0.0367}
-  m_SizeDelta: {x: 0.1, y: 0.02645}
+  m_AnchoredPosition: {x: 0.0002, y: -0.0381}
+  m_SizeDelta: {x: 0.15, y: 0.02645}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4575621551952814398
 CanvasRenderer:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Belangrijk
+  m_text: Departementaal vertrouwelijk onversleuteld
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.02
-  m_fontSizeBase: 0.02
+  m_fontSize: 0.015
+  m_fontSizeBase: 0.015
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 8501268601488366221}
   - component: {fileID: 8501268601488366220}
   m_Layer: 0
-  m_Name: BinderBelangrijk
+  m_Name: Binder depatementaal vertrouwelijk ON
   m_TagString: Binder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
