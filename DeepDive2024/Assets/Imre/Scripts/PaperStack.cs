@@ -10,23 +10,41 @@ public class PaperStack : MonoBehaviour
     public GameObject parentObject; // Reference to the empty GameObject (parent)
     public TextMeshProUGUI counterText; // Reference to the TextMeshProUGUI element for displaying the counter
     public float offsetHeight = 1.0f; // Height offset for each stacked prefab
-    public int numberOfStacks = 4; // Number of prefabs to stack initially, set in the editor
+    public static int numberOfStacks = 4; // Number of prefabs to stack initially, set in the editor
     public float textYOffset = 2.0f; // Offset to position the text above the stack
 
     private int startingCounter; // The dynamic starting value of the counter
-    private List<GameObject> stackedPrefabs = new List<GameObject>(); // List to keep track of stacked prefabs
+    public List<GameObject> stackedPrefabs = new List<GameObject>(); // List to keep track of stacked prefabs
     private List<int> triggerValues; // List of dynamic trigger values
 
     public static int counter; // The counter that counts down
+    public static bool updateStacks = false;
 
     void Start()
     {
+        numberOfStacks = 4;
+
+        UpdateStacks();
+
+        // Update the counter text UI at the start
+        UpdateCounterText();
+    }
+
+    void UpdateStacks()
+    {
+        foreach (GameObject go in stackedPrefabs) Destroy(go);
+        stackedPrefabs.Clear();
+
         // Dynamically set startingCounter based on the number of stacks
         startingCounter = numberOfStacks * 5;
 
         // Initialize the counter with the startingCounter
         counter = startingCounter;
-
+        // Stack the number of prefabs defined by numberOfStacks
+        for (int i = 0; i < numberOfStacks; i++)
+        {
+            StackPrefabAtHeight(i);
+        }
         // Generate dynamic trigger values based on the number of stacks
         triggerValues = new List<int>();
         for (int i = 0; i < numberOfStacks; i++)
@@ -34,19 +52,14 @@ public class PaperStack : MonoBehaviour
             triggerValues.Add(i * 5);
         }
 
-        // Stack the number of prefabs defined by numberOfStacks
-        for (int i = 0; i < numberOfStacks; i++)
-        {
-            StackPrefabAtHeight(i);
-        }
-
-        // Update the counter text UI at the start
-        UpdateCounterText();
+        updateStacks = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (updateStacks) UpdateStacks();
+
         // Update the position of the counter text above the stack
         UpdateCounterTextPosition();
         UpdateCounterText();
