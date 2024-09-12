@@ -12,7 +12,7 @@ public class CartSFXSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        range = Random.Range(20, 61);
+        range = Random.Range(120, 161);
         isActive = false;
     }
 
@@ -42,8 +42,18 @@ public class CartSFXSystem : MonoBehaviour
 
     public void PaperBehaviour()
     {
-        PaperStack.counter += 10;
+        if (DigitalClock.dayIndex ==3)
+        {
+            PaperStack.counter += 20;
+            PaperStack.numberOfStacks += 4;
+        }
+        else if (DigitalClock.dayIndex == 4)
+        {
+            PaperStack.counter += 30;
+            PaperStack.numberOfStacks += 6;
+        }
         paperSFX.Play();
+        PaperStack.updateStacks = true;
     }
 
     public void AnimReset()

@@ -9,6 +9,7 @@ public class PapierPropje : MonoBehaviour
     public Camera cam;
     public float destroyTimer = 2f;
     public Animator boss_Animator;
+    public AudioSource binSFX;
 
     void Start()
     {
@@ -43,9 +44,7 @@ public class PapierPropje : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Boss"))
-        {
-            boss_Animator.SetBool("BossMovement", false);
-        }
+        if(collision.collider.CompareTag("Boss")) boss_Animator.SetBool("BossMovement", false);
+        if(collision.collider.CompareTag("Bin"))  binSFX.Play();
     }
 }
