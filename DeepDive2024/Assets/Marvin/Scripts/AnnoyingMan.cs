@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,31 +5,53 @@ using UnityEngine;
 public class AnnoyingMan : MonoBehaviour
 {
     public Transform character;
-    [SerializeField] private float range, timer;
+    [SerializeField] private float currentTime ,unactiveTime = 40, activeTime = 15, time;
     public Animator boss_Animator;
     public static bool isActive = false;
+    private int dayCounter;
     // Start is called before the first frame update
     void Start()
     {
-        range = UnityEngine.Random.Range(20, 61);
+        time = unactiveTime;
         isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DigitalClock.dayIndex >= 2 && !isActive) AnnoyingManActive();
+        if (DigitalClock.dayIndex >= 1) AnnoyingManActive();
+        dayCounter = DigitalClock.dayIndex;
+        UpdateTimer();
     }
 
     void AnnoyingManActive()
     {
-        timer += Time.deltaTime;
-        if (timer >= range)
+        currentTime += Time.deltaTime;
+        if (currentTime >= time)
         {
-            range = UnityEngine.Random.Range(20, 61);
-            boss_Animator.SetBool("BossMovement", true);
-            timer = 0;
-            isActive = true;
+            currentTime = 0;
+            isActive = !isActive;
+            if (isActive)
+            {
+                boss_Animator.SetBool("BossMovement", true);
+                time = activeTime;
+            }
+            else
+            {
+                boss_Animator.SetBool("BossMovement", false);
+                time = unactiveTime;
+            }
         }
+    }
+
+    void UpdateTimer()
+    {
+        if (dayCounter == 2) unactiveTime = 30;
+        else if (dayCounter == 3)
+        {
+            unactiveTime = 25;
+            activeTime = 10;
+        }
+        else if (dayCounter == 4) unactiveTime = 20;
     }
 }

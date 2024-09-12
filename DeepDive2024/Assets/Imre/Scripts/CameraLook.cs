@@ -91,7 +91,7 @@ public class CameraLook : MonoBehaviour
         // Check for left mouse button press
         if (Input.GetMouseButtonDown(0)) // 0 is the left mouse button
         {
-            if (heldPaper == null && canGrab && paperStack != null && paperStack.counter > 0)
+            if (heldPaper == null && canGrab && paperStack != null && PaperStack.counter > 0)
             {
                 GrabPaper();
             }
