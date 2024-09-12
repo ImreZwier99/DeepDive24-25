@@ -9,6 +9,8 @@ public class AnnoyingMan : MonoBehaviour
     public Animator boss_Animator;
     public static bool isActive = false;
     private int dayCounter;
+    public AudioSource angrySound_Boss, hittedSound_Boss;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,12 @@ public class AnnoyingMan : MonoBehaviour
         AnnoyingManActive();
         dayCounter = DigitalClock.dayIndex;
         UpdateTimer();
+
+		if (PapierPropje.hittedBoss)
+		{
+            hittedSound_Boss.Play();
+            PapierPropje.hittedBoss = false;
+		}
     }
 
     void AnnoyingManActive()
@@ -35,6 +43,7 @@ public class AnnoyingMan : MonoBehaviour
             {
                 boss_Animator.SetBool("BossMovement", true);
                 time = activeTime;
+                angrySound_Boss.Play();
             }
             else
             {
