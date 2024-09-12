@@ -25,6 +25,9 @@ TagManager:
   - Binder2
   - Binder3
   - Binder4
+  - Binder5
+  - Plant1
+  - Plant2
   layers:
   - Default
   - TransparentFX
