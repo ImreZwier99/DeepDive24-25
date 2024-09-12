@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaperInteraction : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PaperInteraction : MonoBehaviour
     [SerializeField] private float paperYoffset;
 
     public GameObject heldPaper;
+    public RawImage kruisje1;
+    public RawImage kruisje2;
     private PaperStack paperStack;
     private bool canGrab = false;
     private bool canInteractWithBinder = false;
@@ -28,7 +31,7 @@ public class PaperInteraction : MonoBehaviour
         CheckRaycast();
         HandleInput();
 
-        if (fout <= 0)
+        if (fout > 2)
         {
             //zet hier wat dan moet gebeuren.
             print("je hebt te veel fouten gemaakt.");

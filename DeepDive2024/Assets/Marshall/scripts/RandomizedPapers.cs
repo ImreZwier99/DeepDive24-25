@@ -162,7 +162,7 @@ public class RandomizedPapers : MonoBehaviour
             vertrouwelijk = false;
         }
 
-        if (privé && belangrijk)
+        if (privé && handTekening)
         {
             departementaalVersleuteld = true;
         }
@@ -171,7 +171,7 @@ public class RandomizedPapers : MonoBehaviour
             departementaalVersleuteld = false;
         }
 
-        if (!privé && belangrijk)
+        if (!privé && handTekening)
         {
             departementaalOnversleuteld = true;
         }
