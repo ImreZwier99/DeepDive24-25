@@ -16,6 +16,7 @@ public class PaperInteraction : MonoBehaviour
     private PaperStack paperStack;
     private bool canGrab = false;
     private bool canInteractWithBinder = false;
+    private int fout = 2;
 
     private void Start()
     {
@@ -26,6 +27,12 @@ public class PaperInteraction : MonoBehaviour
     {
         CheckRaycast();
         HandleInput();
+
+        if (fout <= 0)
+        {
+            //zet hier wat dan moet gebeuren.
+            print("je hebt te veel fouten gemaakt.");
+        }
     }
 
     private void HandleInput()
@@ -52,11 +59,65 @@ public class PaperInteraction : MonoBehaviour
         {
             canGrab = hit.collider.CompareTag("PaperStack");
 
-            canInteractWithBinder = hit.collider.CompareTag("Binder") && RandomizedPapers. ||
-                                    hit.collider.CompareTag("Binder2") ||
-                                    hit.collider.CompareTag("Binder3") ||
-                                    hit.collider.CompareTag("Binder4") ||
-                                    hit.collider.CompareTag("Binder5");
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.departementaalOnversleuteld)
+            {
+                Destroy(heldPaper);
+                fout--;
+                print(fout);
+            }
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder")&& Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.departementaalOnversleuteld)
+            {
+                Destroy(heldPaper);
+                print(fout);
+            }
+            
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder2") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.departementaalVersleuteld)
+            {
+                Destroy(heldPaper);
+                fout--;
+                print(fout);
+            }
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder2") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.departementaalVersleuteld)
+            {
+                Destroy(heldPaper);
+                print(fout);
+            }
+
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.openbaar)
+            {
+                Destroy(heldPaper);
+                fout--;
+                print(fout);
+            }
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.openbaar)
+            {
+                Destroy(heldPaper);
+                print(fout);
+            }
+
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.vertrouwelijk)
+            {
+                Destroy(heldPaper);
+                fout--;
+                print(fout);
+            }
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.vertrouwelijk)
+            {
+                Destroy(heldPaper);
+                print(fout);
+            }
+
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.intern)
+            {
+                Destroy(heldPaper);
+                fout--;
+                print(fout);
+            }
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.intern)
+            {
+                Destroy(heldPaper);
+                print(fout);
+            }
         }
         else
         {
