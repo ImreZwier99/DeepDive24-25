@@ -52,7 +52,7 @@ public class PaperInteraction : MonoBehaviour
         {
             canGrab = hit.collider.CompareTag("PaperStack");
 
-            canInteractWithBinder = hit.collider.CompareTag("Binder") ||
+            canInteractWithBinder = hit.collider.CompareTag("Binder") && RandomizedPapers. ||
                                     hit.collider.CompareTag("Binder2") ||
                                     hit.collider.CompareTag("Binder3") ||
                                     hit.collider.CompareTag("Binder4");
