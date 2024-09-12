@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 453937455438905950}
   - component: {fileID: 2085313725561286423}
   - component: {fileID: 1319921470514807091}
+  - component: {fileID: 4716038799233827955}
   m_Layer: 0
   m_Name: PaperVerbeter
   m_TagString: Papier
@@ -278,6 +279,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4716038799233827955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970163725859229260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ceec43656656d547bc5d014c39a26ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  naamText: {fileID: 196586620607957303}
+  priveText: {fileID: 6582469945818796790}
+  datumText: {fileID: 8080432074163666681}
+  handtekeningImage: {fileID: 3829820454101379671}
 --- !u!1 &5523564017040343669
 GameObject:
   m_ObjectHideFlags: 0
