@@ -11,8 +11,8 @@ public class RandomizedPapers : MonoBehaviour
     public static string fullName;
     public static string datum;
 
-    public static int[] dagen = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
-    public static int[] maanden = { 1, 2, 3, 4, 5, 6 };
+    public static int[] dagen = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 };
+    public static int[] maanden = { 1, 2, 3 };
 
     public static int toegankelijkheid;
     public static int ondertekend;
@@ -49,7 +49,9 @@ public class RandomizedPapers : MonoBehaviour
         string lastName = achternamen[random.Next(0, achternamen.Length)];
         fullName = firstName + " " + lastName;
 
-        string dag = dagen[random.Next(0,dagen.Length).ToString()];
+        string dag = dagen[random.Next(0,dagen.Length)].ToString();
+        string maand = maanden[random.Next(0, maanden.Length)].ToString();
+        datum = dag + "-" + maand +"-2024";
     }
 
     IEnumerator WaitForSpawnedItem()
@@ -80,6 +82,7 @@ public class RandomizedPapers : MonoBehaviour
     void UpdateUI()
     {
         naamText.text = fullName;
+        datumText.text = datum;
 
         if (privé)
         {
