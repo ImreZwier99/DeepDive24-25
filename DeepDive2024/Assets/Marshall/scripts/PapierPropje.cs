@@ -9,10 +9,11 @@ public class PapierPropje : MonoBehaviour
     public Camera cam;
     public float destroyTimer = 2f;
     public Animator boss_Animator;
-    public AudioSource binSFX;
+    public static bool hittedBoss = false;
 
     void Start()
     {
+        hittedBoss = false;
         rb = GetComponent<Rigidbody>();
 
         if (cam == null)
@@ -44,7 +45,11 @@ public class PapierPropje : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Boss")) boss_Animator.SetBool("BossMovement", false);
-        if(collision.collider.CompareTag("Bin"))  binSFX.Play();
+        if(collision.collider.CompareTag("Boss") && !WateringSystem.fired)
+        {
+            hittedBoss = true;
+            boss_Animator.SetBool("BossMovement", false);
+            WateringSystem.fired = true;
+        }
     }
 }
