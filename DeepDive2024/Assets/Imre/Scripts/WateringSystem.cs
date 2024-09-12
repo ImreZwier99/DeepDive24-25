@@ -33,6 +33,14 @@ public class WateringSystem : MonoBehaviour
         UpdateWateringTimer(2);
         HandleInput();
         CheckRaycast();
+        if (AnnoyingMan.isActive == true)
+        {
+            if(waterTimer1 <= 0 || waterTimer2 <= 0)
+            {
+                Debug.Log("you dead");
+            }
+            
+        }
     }
 
     private void HandleInput()
