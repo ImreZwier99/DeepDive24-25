@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SmoothingPanel : MonoBehaviour
 {
     public bool smooth;
-    public static bool smoothing, completedDay = true;
-    private bool isActive = false;
+    public static bool smoothing, completedDay = true, isActive = false;
 
     public GameObject detailPanel, completedDayText, failedDayButtons;
     private float panelTimer = 15;
@@ -27,6 +27,14 @@ public class SmoothingPanel : MonoBehaviour
             timer_Text.text = Mathf.Round(panelTimer).ToString() + " | Enter";
         }
         smoothing = smooth;
+
+        EarlyCompleted();
+    }
+
+    private void EarlyCompleted()
+	{
+        if(PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper && !WateringSystem.fired) completedDay = true;
+        else if(WateringSystem.fired) completedDay = false;
     }
 
     public void DetailPanelActivation()
@@ -72,4 +80,8 @@ public class SmoothingPanel : MonoBehaviour
             isActive = false;
         }
 	}
+
+    public void QuitGame() => Application.Quit();
+
+    public void RetryBehaviour() => SceneManager.LoadScene(0);
 }

@@ -20,7 +20,7 @@ public class PaperInteraction : MonoBehaviour
     private bool canGrab = false;
     private bool canInteractWithBinder = false;
     private int fout = 2;
-
+    public static bool isHoldingPaper = false;
     private void Start()
     {
         paperStack = FindObjectOfType<PaperStack>();
@@ -28,6 +28,9 @@ public class PaperInteraction : MonoBehaviour
 
     void Update()
     {
+        if (heldPaper != null) isHoldingPaper = true;
+        else isHoldingPaper = false;
+
         CheckRaycast();
         HandleInput();
 
@@ -40,7 +43,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !WateringSystem.fired)
         {
             if (heldPaper == null && canGrab && paperStack != null && PaperStack.counter > 0)
             {

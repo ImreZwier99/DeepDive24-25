@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !SmoothingPanel.isActive)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
             pauseMenu.SetActive(true);
             cursorMenu.SetActive(false);
         }
+        else if (SmoothingPanel.isActive) pauseMenu.SetActive(false);
     }
 
     public void Continue()
