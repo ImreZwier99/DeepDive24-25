@@ -149,6 +149,7 @@ public class CameraLook : MonoBehaviour
 
     private void GrabPaper()
     {
+        RandomizedPapers.OnNewSpawn();
         if (paperPrefab == null)
         {
             Debug.LogError("Paper Prefab is not assigned!");
