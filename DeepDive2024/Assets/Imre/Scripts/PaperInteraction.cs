@@ -63,6 +63,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void GrabPaper()
     {
+        RandomizedPapers.OnNewSpawn();
         if (paperPrefab == null) return;
 
         Vector3 paperPosition = _camera.position + _camera.forward * paperDistance;
