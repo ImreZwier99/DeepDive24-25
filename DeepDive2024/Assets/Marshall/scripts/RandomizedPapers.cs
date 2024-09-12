@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class RandomizedPapers : MonoBehaviour
 {
@@ -19,8 +20,13 @@ public class RandomizedPapers : MonoBehaviour
 
     public static bool handTekening = false;
     public static bool privé = false;
-    public static bool geldigeDatum = true;
     public static bool belangrijk = false;
+
+    public static bool vertrouwelijk = false;
+    public static bool intern = false;
+    public static bool openbaar = false;
+    public static bool departementaalVersleuteld = false;
+    public static bool departementaalOnversleuteld = false;
 
     public TextMeshProUGUI naamText;
     public TextMeshProUGUI priveText;
@@ -93,7 +99,7 @@ public class RandomizedPapers : MonoBehaviour
             priveText.text = "Openbaar";
         }
 
-        if (toegankelijkheid <= 1)
+        if (toegankelijkheid <= 0)
         {
             privé = false;
         }
@@ -104,11 +110,11 @@ public class RandomizedPapers : MonoBehaviour
 
         if (ondertekend <= 1)
         {
-            handTekening = false;
+            handTekening = true;
         }
         else
         {
-            handTekening = true;
+            handTekening = false;
         }
 
         if (handTekening)
@@ -120,7 +126,7 @@ public class RandomizedPapers : MonoBehaviour
             handtekeningImage.SetActive(false);
         }
 
-        if (fullName == "Thomas Mulder" && handTekening && geldigeDatum)
+        if (fullName == "Thomas Mulder" && handTekening)
         {
             belangrijk = true;
         }
@@ -128,6 +134,57 @@ public class RandomizedPapers : MonoBehaviour
         {
             belangrijk = false;
         }
+
+        if (!privé && !handTekening)
+        {
+            openbaar = true;
+        }
+        else
+        {
+            openbaar = false;
+        }
+
+        if (!privé && belangrijk)
+        {
+            intern = true;
+        }
+        else
+        {
+            intern = false;
+        }
+
+        if (handTekening)
+        {
+            vertrouwelijk = true;
+        }
+        else
+        {
+            vertrouwelijk = false;
+        }
+
+        if (privé && belangrijk)
+        {
+            departementaalVersleuteld = true;
+        }
+        else
+        {
+            departementaalVersleuteld = false;
+        }
+
+        if (!privé && belangrijk)
+        {
+            departementaalOnversleuteld = true;
+        }
+        else
+        {
+            departementaalOnversleuteld = false;
+        }
+
+        print(departementaalVersleuteld);
+        print(departementaalOnversleuteld);
+        print(vertrouwelijk);
+        print(intern);
+        print(openbaar);
     }
 
     public static void OnNewSpawn()
@@ -141,7 +198,7 @@ public class RandomizedPapers : MonoBehaviour
     {
         var rnd = new System.Random();
 
-        toegankelijkheid = rnd.Next(0, 3);
+        toegankelijkheid = rnd.Next(0, 2);
         ondertekend = rnd.Next(0, 3);
     }
 }
