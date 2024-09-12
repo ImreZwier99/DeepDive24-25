@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SmoothingPanel : MonoBehaviour
 {
@@ -79,4 +80,8 @@ public class SmoothingPanel : MonoBehaviour
             isActive = false;
         }
 	}
+
+    public void QuitGame() => Application.Quit();
+
+    public void RetryBehaviour() => SceneManager.LoadScene(0);
 }
