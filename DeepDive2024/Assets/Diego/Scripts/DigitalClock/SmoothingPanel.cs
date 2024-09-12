@@ -27,7 +27,14 @@ public class SmoothingPanel : MonoBehaviour
             timer_Text.text = Mathf.Round(panelTimer).ToString() + " | Enter";
         }
         smoothing = smooth;
+
+        EarlyCompleted();
     }
+
+    private void EarlyCompleted()
+	{
+        if(PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper) completedDay = true;
+	}
 
     public void DetailPanelActivation()
 	{
