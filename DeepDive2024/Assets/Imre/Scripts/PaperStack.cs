@@ -49,6 +49,7 @@ public class PaperStack : MonoBehaviour
     {
         // Update the position of the counter text above the stack
         UpdateCounterTextPosition();
+        UpdateCounterText();
     }
 
     // This function decreases the counter and checks if it should remove a stack

@@ -31,7 +31,7 @@ public class PaperInteraction : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (heldPaper == null && canGrab && paperStack != null && paperStack.counter > 0)
+            if (heldPaper == null && canGrab && paperStack != null && PaperStack.counter > 0)
             {
                 GrabPaper();
             }
