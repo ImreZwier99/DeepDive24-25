@@ -37,13 +37,13 @@ public class PaperInteraction : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (heldPaper != null)
-            {
-                DeletePaper();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    if (heldPaper != null)
+        //    {
+        //        DeletePaper();
+        //    }
+        //}
     }
 
     private void CheckRaycast()
