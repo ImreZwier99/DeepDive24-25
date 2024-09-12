@@ -21,6 +21,9 @@ TagManager:
   - toegankelijkheidstest
   - naamtext
   - Papier
+  - Binder
+  - Binder2
+  - Binder3
   layers:
   - Default
   - TransparentFX

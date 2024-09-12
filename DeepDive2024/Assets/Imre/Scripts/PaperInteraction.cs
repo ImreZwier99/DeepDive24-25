@@ -15,6 +15,7 @@ public class PaperInteraction : MonoBehaviour
     public GameObject heldPaper;
     private PaperStack paperStack;
     private bool canGrab = false;
+    private bool canInteractWithBinder = false;
 
     private void Start()
     {
@@ -35,13 +36,9 @@ public class PaperInteraction : MonoBehaviour
             {
                 GrabPaper();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (heldPaper != null)
+            else if (heldPaper != null && canInteractWithBinder)
             {
-                DeletePaper();
+                InteractWithBinder();
             }
         }
     }
@@ -54,10 +51,16 @@ public class PaperInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayDistance, interactableLayerMask))
         {
             canGrab = hit.collider.CompareTag("PaperStack");
+
+            canInteractWithBinder = hit.collider.CompareTag("Binder") ||
+                                    hit.collider.CompareTag("Binder2") ||
+                                    hit.collider.CompareTag("Binder3") ||
+                                    hit.collider.CompareTag("Binder4");
         }
         else
         {
             canGrab = false;
+            canInteractWithBinder = false;
         }
     }
 
@@ -78,6 +81,11 @@ public class PaperInteraction : MonoBehaviour
         {
             paperStack.DecreaseCounter();
         }
+    }
+
+    private void InteractWithBinder()
+    {
+        DeletePaper();
     }
 
     public void DeletePaper()
