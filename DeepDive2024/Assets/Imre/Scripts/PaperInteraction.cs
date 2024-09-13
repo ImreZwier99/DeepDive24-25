@@ -15,13 +15,14 @@ public class PaperInteraction : MonoBehaviour
 
     public AudioSource paperSFX;
     public GameObject heldPaper;
-    public RawImage kruisje1;
-    public RawImage kruisje2;
+    public Image kruisje1;
+    public Image kruisje2;
     private PaperStack paperStack;
     private bool canGrab = false;
     private bool canInteractWithBinder = false;
     private int fout = 0;
     public static bool isHoldingPaper = false;
+
     private void Start()
     {
         paperStack = FindObjectOfType<PaperStack>();
@@ -37,9 +38,21 @@ public class PaperInteraction : MonoBehaviour
 
         if (fout > 2)
         {
-            //zet hier wat dan moet gebeuren.
             WateringSystem.fired = true;
             print("je hebt te veel fouten gemaakt.");
+        }
+        if (fout == 0)
+        {
+            kruisje1.color = Color.black;
+            kruisje2.color = Color.black;
+        }
+        if (fout == 1)
+        {
+            kruisje1.color = Color.red;
+        }
+        if (fout == 2)
+        {
+            kruisje2.color = Color.red;
         }
     }
 
