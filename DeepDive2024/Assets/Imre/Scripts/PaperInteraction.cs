@@ -104,13 +104,13 @@ public class PaperInteraction : MonoBehaviour
                 print(fout);
             }
 
-            if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.openbaar)
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.openbaar)
             {
                 Destroy(heldPaper);
                 fout++;
                 print(fout);
             }
-            else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.openbaar)
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.openbaar)
             {
                 Destroy(heldPaper);
                 print(fout);
