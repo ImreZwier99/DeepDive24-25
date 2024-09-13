@@ -39,6 +39,12 @@ public class WateringSystem : MonoBehaviour
         {
             if(waterTimer1 <= 0 || waterTimer2 <= 0) fired = true;
         }
+
+        if (!SmoothingPanel.smoothing)
+        {
+            waterTimer1 = Random.Range(minWateringTime, maxWateringTime);
+            waterTimer2 = Random.Range(minWateringTime, maxWateringTime);
+        }
     }
 
     private void HandleInput()

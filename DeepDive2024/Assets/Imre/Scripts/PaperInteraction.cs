@@ -101,43 +101,36 @@ public class PaperInteraction : MonoBehaviour
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder2") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.departementaalVersleuteld)
             {
                 Destroy(heldPaper);
-                print(fout);
             }
 
-            if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.openbaar)
+            if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.privé)
             {
                 Destroy(heldPaper);
                 fout++;
-                print(fout);
             }
-            else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.openbaar)
+            else if (canInteractWithBinder = hit.collider.CompareTag("Binder3") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.privé)
             {
                 Destroy(heldPaper);
-                print(fout);
             }
 
             if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.vertrouwelijk)
             {
                 Destroy(heldPaper);
                 fout++;
-                print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder4") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.vertrouwelijk)
             {
                 Destroy(heldPaper);
-                print(fout);
             }
 
             if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && heldPaper != null && Input.GetKeyDown(KeyCode.Mouse0) && !RandomizedPapers.intern)
             {
                 Destroy(heldPaper);
                 fout++;
-                print(fout);
             }
             else if (canInteractWithBinder = hit.collider.CompareTag("Binder5") && Input.GetKeyDown(KeyCode.Mouse0) && RandomizedPapers.intern)
             {
                 Destroy(heldPaper);
-                print(fout);
             }
         }
         else

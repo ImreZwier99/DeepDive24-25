@@ -46,6 +46,11 @@ public class DigitalClock : MonoBehaviour
             return; // Stop verdere updates totdat de animatie klaar is
         }
 
+        if (!SmoothingPanel.smoothing)
+        {
+            PaperStack.updateStacks = true;
+        }
+
         timeCounter += Time.deltaTime;
 
         if (timeCounter >= timeSpeed)

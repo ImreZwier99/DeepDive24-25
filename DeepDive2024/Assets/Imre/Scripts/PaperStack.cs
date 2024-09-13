@@ -22,7 +22,7 @@ public class PaperStack : MonoBehaviour
 
     void Start()
     {
-        numberOfStacks = 4;
+        numberOfStacks = 2;
 
         UpdateStacks();
 
@@ -35,6 +35,10 @@ public class PaperStack : MonoBehaviour
         foreach (GameObject go in stackedPrefabs) Destroy(go);
         stackedPrefabs.Clear();
 
+        if (DigitalClock.dayIndex == 1) numberOfStacks = 3;
+        else if (DigitalClock.dayIndex == 2) numberOfStacks = 4;
+        else if (DigitalClock.dayIndex == 3) numberOfStacks = 5;
+        else if (DigitalClock.dayIndex == 4) numberOfStacks = 6;
         // Dynamically set startingCounter based on the number of stacks
         startingCounter = numberOfStacks * 5;
 
