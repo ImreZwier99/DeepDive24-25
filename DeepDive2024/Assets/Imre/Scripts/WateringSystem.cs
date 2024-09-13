@@ -5,8 +5,7 @@ public class WateringSystem : MonoBehaviour
 {
     [SerializeField] private Slider wateringSlider1; 
     [SerializeField] private Slider wateringSlider2; 
-    private bool canWaterPlant1 = false;
-    private bool canWaterPlant2 = false;
+    public static bool canWaterPlant2 = false, canWaterPlant1 = false;
 
     public float waterTimer1;
     public float waterTimer2;

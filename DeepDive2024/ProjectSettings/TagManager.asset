@@ -14,7 +14,6 @@ TagManager:
   - interactable
   - Bin
   - PaperStack
-  - Plant
   - Boss
   - datumText
   - HandtekeningText
@@ -28,6 +27,7 @@ TagManager:
   - Binder5
   - Plant1
   - Plant2
+  - PaperBall
   layers:
   - Default
   - TransparentFX
