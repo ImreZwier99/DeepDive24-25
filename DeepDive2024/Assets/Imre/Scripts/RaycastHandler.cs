@@ -22,7 +22,7 @@ public class RaycastHandler : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayDistance, interactableLayerMask))
         {
             isLookingAtBin = hit.collider.CompareTag("Bin") || hit.collider.CompareTag("Boss");
-            isLookingAtPlant = hit.collider.CompareTag("Plant");
+            //isLookingAtPlant = hit.collider.CompareTag("Plant");
         }
         else
         {

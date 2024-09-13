@@ -5,11 +5,9 @@ public class WateringSystem : MonoBehaviour
 {
     [SerializeField] private Slider wateringSlider1; 
     [SerializeField] private Slider wateringSlider2; 
-    private bool canWaterPlant1 = false;
-    private bool canWaterPlant2 = false;
+    private bool canWaterPlant2 = false, canWaterPlant1 = false;
 
-    public float waterTimer1;
-    public float waterTimer2;
+    public static float waterTimer1, waterTimer2;
 
     private const float minWateringTime = 30f;
     private const float maxWateringTime = 60f;
