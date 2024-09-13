@@ -55,8 +55,16 @@ public class DigitalClock : MonoBehaviour
 
             if (currentTime >= endTime || PaperStack.counter <= 0 && !PaperInteraction.isHoldingPaper || WateringSystem.fired)
             {
-                // Stop de klok en start de animatie
-                StartAnimation();
+                if (PaperStack.counter > 0 || PaperInteraction.isHoldingPaper == true)
+                {
+                    if (!WateringSystem.fired)
+					{
+                        SmoothingPanel.completedDay = false;
+                        WateringSystem.fired = true;
+                        StartAnimation();
+                    }
+                }
+                else StartAnimation();
             }
 
             UpdateClock();
