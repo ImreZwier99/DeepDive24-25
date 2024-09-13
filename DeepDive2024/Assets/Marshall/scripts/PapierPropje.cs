@@ -10,6 +10,7 @@ public class PapierPropje : MonoBehaviour
     public float destroyTimer = 2f;
     public Animator boss_Animator;
     public static bool hittedBoss = false;
+    public AudioSource binSFX;
 
     void Start()
     {
@@ -51,5 +52,6 @@ public class PapierPropje : MonoBehaviour
             boss_Animator.SetBool("BossMovement", false);
             WateringSystem.fired = true;
         }
+        if (collision.collider.CompareTag("Bin")) binSFX.Play();
     }
 }
