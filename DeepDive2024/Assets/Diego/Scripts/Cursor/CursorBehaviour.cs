@@ -4,79 +4,55 @@ using UnityEngine;
 
 public class CursorBehaviour : MonoBehaviour
 {
-    // De afstand waarbinnen de raycast objecten detecteert
-    public float raycastRange = 100f;
-
-    // Reference naar de camera (normaal gezien de main camera)
-    public Camera playerCamera;
-
-    // Lijst met tags waarmee we willen vergelijken
+    public float raycastRange = 100f;  // De afstand waarbinnen de raycast objecten detecteert
+    public Camera playerCamera;        // De camera voor de raycast
     public string[] binderTags = { "Binder", "Binder2", "Binder3", "Binder4", "Binder5" };  // Binder tags
-    public string[] plantTags = { "Plant1", "Plant2" };  // Plant tags
+    private GameObject currentObject;  // Het huidige geselecteerde object
+    public GameObject Cursor1Object;   // Eerste cursor
+    public GameObject Cursor2Object;   // Tweede cursor
 
-    // Het huidige geselecteerde object
-    private GameObject currentObject;
+    private bool previousHoldingPaperStatus; // Vorige status van isHoldingPaper
+    private bool isRaycastHitValid;    // Variabele om de raycast-validatie op te slaan
 
-    // Referenties naar de twee cursor objecten
-    public GameObject Cursor1Object;
-    public GameObject Cursor2Object;
-
-    // Variabele om de vorige waarde van isHoldingPaper bij te houden
-    private bool previousHoldingPaperStatus;
-
-    // Start is called before the first frame update
     void Start()
     {
         if (playerCamera == null)
         {
-            playerCamera = Camera.main; // Gebruik de main camera als er geen is toegewezen
+            playerCamera = Camera.main;
         }
 
-        // Zorg dat alleen Cursor1Object zichtbaar is bij de start
         if (Cursor1Object != null && Cursor2Object != null)
         {
-            Cursor1Object.SetActive(true);  // Start met Cursor1 actief
-            Cursor2Object.SetActive(false); // Cursor2 uitgeschakeld
+            Cursor1Object.SetActive(true);
+            Cursor2Object.SetActive(false);
         }
 
-        // Zet de initiële waarde van de vorige holding paper status
         previousHoldingPaperStatus = PaperInteraction.isHoldingPaper;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition); // Creëer een ray vanaf de muispositie
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Controleer of de ray een object raakt binnen het bereik
-        if (Physics.Raycast(ray, out hit, raycastRange))
+        // Controleer de raycast en check of de ray een object raakt
+        isRaycastHitValid = Physics.Raycast(ray, out hit, raycastRange);
+
+        if (isRaycastHitValid)
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            // Als het object hetzelfde is als het vorige, update alleen de cursor status
-            if (hitObject == currentObject)
+            // Als het object verandert of als de status van PaperInteraction verandert
+            if (hitObject != currentObject || PaperInteraction.isHoldingPaper != previousHoldingPaperStatus)
             {
-                // Check of de PaperInteraction status is veranderd
-                if (PaperInteraction.isHoldingPaper != previousHoldingPaperStatus)
-                {
-                    // Update de cursor als de status is veranderd
-                    OnCursorEnter(currentObject);
-                    previousHoldingPaperStatus = PaperInteraction.isHoldingPaper;
-                }
-            }
-            else
-            {
-                // Als we naar een ander object kijken dan het vorige
                 if (currentObject != null)
                 {
-                    OnCursorExit(currentObject); // Voer exit gedrag uit voor het vorige object
+                    OnCursorExit(currentObject);  // Voer exit gedrag uit voor het vorige object
                 }
 
-                currentObject = hitObject;
-                OnCursorEnter(currentObject); // Voer enter gedrag uit voor het nieuwe object
+                currentObject = hitObject;      // Update naar het nieuwe object
+                OnCursorEnter(currentObject);        // Voer enter gedrag uit voor het nieuwe object
 
-                // Update de vorige holding paper status
                 previousHoldingPaperStatus = PaperInteraction.isHoldingPaper;
             }
         }
@@ -89,59 +65,76 @@ public class CursorBehaviour : MonoBehaviour
                 currentObject = null;
             }
         }
+
+        // Controleer ook de status van de timers voor het huidige object
+        if (currentObject != null)
+        {
+            CheckCursorStatusForCurrentObject(currentObject);
+        }
     }
 
-    // Wat gebeurt er wanneer de cursor een object binnenkomt
+    // Functie voor als de cursor een object binnenkomt of de status verandert
     void OnCursorEnter(GameObject obj)
     {
         Debug.Log("Cursor over: " + obj.name);
 
-        // Controleer of de tag 'PaperStack' is
+        // Controleer of de tag 'PaperStack' is en of je geen papier vasthoudt
         if (obj.CompareTag("PaperStack"))
         {
             if (!PaperInteraction.isHoldingPaper)
             {
-                // Als je geen papier vasthoudt, wissel naar Cursor2
                 SwitchToCursor2();
             }
             else
             {
-                // Als je wel papier vasthoudt, wissel niet naar Cursor2
-                Debug.Log("Cannot switch to Cursor2, holding paper");
                 SwitchToCursor1();
             }
             return;
         }
 
-        // Controleer of we naar een binder kijken en PaperInteraction.isHoldingPaper == true
+        // Controleer of het een Binder-tag is en of je papier vasthoudt
         foreach (string tag in binderTags)
         {
             if (obj.CompareTag(tag) && PaperInteraction.isHoldingPaper)
             {
-                SwitchToCursor2(); // Wissel naar Cursor2 als de speler papier vasthoudt en naar een binder kijkt
+                SwitchToCursor2();
                 return;
             }
         }
 
-        // Controleer of we naar Plant1 kijken en canWaterPlant1 == true
-        if (obj.CompareTag("Plant1") && WateringSystem.canWaterPlant1)
+        // Controleer Plant1 met waterTimer1 <= 10
+        if (obj.CompareTag("Plant1"))
         {
-            SwitchToCursor2();
+            if (WateringSystem.waterTimer1 <= 10)
+            {
+                SwitchToCursor2();
+            }
+            else
+            {
+                SwitchToCursor1();
+            }
             return;
         }
 
-        // Controleer of we naar Plant2 kijken en canWaterPlant2 == true
-        if (obj.CompareTag("Plant2") && WateringSystem.canWaterPlant2)
+        // Controleer Plant2 met waterTimer2 <= 10
+        if (obj.CompareTag("Plant2"))
         {
-            SwitchToCursor2();
+            if (WateringSystem.waterTimer2 <= 10)
+            {
+                SwitchToCursor2();
+            }
+            else
+            {
+                SwitchToCursor1();
+            }
             return;
         }
 
-        // Als geen van de condities overeenkomt, ga terug naar Cursor1
+        // Als geen van de bovenstaande condities waar zijn, schakel naar Cursor1
         SwitchToCursor1();
     }
 
-    // Wat gebeurt er wanneer de cursor een object verlaat
+    // Functie voor als de cursor een object verlaat
     void OnCursorExit(GameObject obj)
     {
         Debug.Log("Cursor verlaat: " + obj.name);
@@ -165,6 +158,59 @@ public class CursorBehaviour : MonoBehaviour
         {
             Cursor1Object.SetActive(false);
             Cursor2Object.SetActive(true);
+        }
+    }
+
+    // Extra functie om de cursorstatus voor het huidige object te controleren
+    void CheckCursorStatusForCurrentObject(GameObject obj)
+    {
+        if (obj.CompareTag("PaperStack"))
+        {
+            if (!PaperInteraction.isHoldingPaper)
+            {
+                SwitchToCursor2();
+            }
+            else
+            {
+                SwitchToCursor1();
+            }
+        }
+        else if (obj.CompareTag("Plant1"))
+        {
+            if (WateringSystem.waterTimer1 <= 10)
+            {
+                SwitchToCursor2();
+            }
+            else
+            {
+                SwitchToCursor1();
+            }
+        }
+        else if (obj.CompareTag("Plant2"))
+        {
+            if (WateringSystem.waterTimer2 <= 10)
+            {
+                SwitchToCursor2();
+            }
+            else
+            {
+                SwitchToCursor1();
+            }
+        }
+        else
+        {
+            // Controleer of het een Binder-tag is en of je papier vasthoudt
+            foreach (string tag in binderTags)
+            {
+                if (obj.CompareTag(tag) && PaperInteraction.isHoldingPaper)
+                {
+                    SwitchToCursor2();
+                    return;
+                }
+            }
+
+            // Geen specifieke condities, standaard naar Cursor1
+            SwitchToCursor1();
         }
     }
 }
