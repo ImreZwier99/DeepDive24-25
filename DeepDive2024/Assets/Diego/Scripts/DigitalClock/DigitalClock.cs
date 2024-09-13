@@ -64,7 +64,7 @@ public class DigitalClock : MonoBehaviour
                         StartAnimation();
                     }
                 }
-                else StartAnimation();
+                StartAnimation();
             }
 
             UpdateClock();
