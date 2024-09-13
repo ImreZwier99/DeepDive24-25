@@ -149,7 +149,7 @@ public class PaperInteraction : MonoBehaviour
 
     private void GrabPaper()
     {
-        //paperSFX.Play();
+        paperSFX.Play();
         RandomizedPapers.OnNewSpawn();
         if (paperPrefab == null) return;
 
